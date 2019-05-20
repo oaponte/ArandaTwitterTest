@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ArandaTest - Twitter api integration</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <div class="page-header">
+        &nbsp;
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                Tweet Search
+            </div>
+            <div class="col-md-3">
+                <input #searchByWord type="text" class="form-control" placeholder="Search" (keydown.enter)="onKeydown($event, searchByWord.value)">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">&nbsp;</div>
+        </div>
+
+
+        <div class="row">
+            <div id="posts" class="col-md-4" *ngFor="let tweet of tweets; let i = index">
+                <app-tweet *ngIf="tweet.retweeted_status" [tweet]="tweet.retweeted_status" [retweet]="tweet" (action)="action($event, i)" [searchByWord]="searchByWord"></app-tweet>
+                <app-tweet *ngIf="!tweet.retweeted_status" [tweet]="tweet" (action)="action($event, i)" [searchByWord]="searchByWord"></app-tweet>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

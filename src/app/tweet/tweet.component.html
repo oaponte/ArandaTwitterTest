@@ -1,0 +1,41 @@
+<div class="post card">
+    <div class="card-body">
+        <div>
+            <div class="row">
+                <div class="col-3">
+                    <img [src]="tweet.user.profile_image_url_https" class="avatar rounded" />
+                </div>
+                <div class="col-9">
+                    <h5>{{tweet.user.name}}</h5>@{{tweet.user.screen_name}}
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <p class="card-text">{{tweet.text.substring(0, 20)}} ...</p>
+        </div>
+        <hr>
+        <div class="card-header-actions">
+            <button type="button" class="btn btn-default btn-sm" (click)="toggleAction('retweet')"><i class="material-icons">share</i></button>
+            <button type="button" class="btn btn-default btn-sm" (click)="toggleAction('favorite')"><i class="material-icons">star</i></button>
+        </div>
+        <div>
+            <button type="button" class="btn btn-icon" (click)="showMore(tweet.id)">más...</button>
+        </div>
+        <div id="showMore{{tweet.id}}" class="card patina" style="width: 18rem;" style="display: none; position: absolute; z-index: 1">
+            <div class="card-body">
+                <hr>
+                <p class="card-title">{{tweet.created_at | date:'medium'}}</p>
+                <hr>
+                <p class="card-text">{{tweet.text}}</p>
+            </div>
+            <div>
+                <button type="button" class="btn btn-icon" (click)="showMore(tweet.id)"><i class="material-icons">keyboard_arrow_up</i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    &nbsp;
+</div>
